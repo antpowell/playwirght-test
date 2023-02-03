@@ -14,10 +14,11 @@ steps:
     inputs:
       versionSpec: '18.x'
     displayName: 'Install Node.js'
-  - task: Bash@3
+  
+  - task: PowerShell@2
     inputs:
-      targetType: inline
-      script: winget install 9WZDNCRD29V9
+      targetType: 'inline'
+      script: 'winget install 9WZDNCRD29V9'
     displayName: 'Install Microsoft 365'
 
   - script: |
