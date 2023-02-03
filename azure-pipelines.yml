@@ -16,7 +16,8 @@ steps:
       targetType: inline
       script: |
         Invoke-WebRequest -Uri "https://aka.ms/winget-client" -OutFile winget-installer.msi
-        Start-Process -FilePath msiexec.exe -ArgumentList "/i winget-installer.msi /quiet" -Wait
+        # Start-Process -FilePath msiexec.exe -ArgumentList "/i winget-installer.msi /quiet" -Wait
+        Add-AppXPackage -Path .\winget-installer.msi
         $env:Path += ";$env:ProgramFiles\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe"
     displayName: 'Install winget'
   
