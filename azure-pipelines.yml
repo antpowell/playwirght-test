@@ -15,10 +15,10 @@ steps:
       versionSpec: '18.x'
     displayName: 'Install Node.js'
 
-  # - script: |
-  #     npm install -g pnpm
-  #     pnpm run build
-  #   displayName: 'pnpm install and build'
+  - script: |
+      npm install -g pnpm
+      # pnpm run build
+    displayName: 'pnpm install'
 
   - script: |
       pnpm vp-test
