@@ -14,11 +14,19 @@ steps:
     inputs:
       versionSpec: '18.x'
     displayName: 'Install Node.js'
+
+  - task: PowerShell@2
+    inputs:
+      script: |
+          Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+          Install-Script -Name winget-install -Force
+          winget-install.ps1
+    displayName: 'Install winget'
   
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
-      script: 'winget install 9WZDNCRD29V9'
+      script: winget install 9WZDNCRD29V9
     displayName: 'Install Microsoft 365'
 
   - script: |
