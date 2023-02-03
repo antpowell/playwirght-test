@@ -10,10 +10,6 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '18.x'
-    displayName: 'Install Node.js'
 
   - task: PowerShell@2
     inputs:
@@ -22,13 +18,19 @@ steps:
         Invoke-WebRequest -Uri "https://aka.ms/winget-client" -OutFile winget-installer.msi
         Start-Process -FilePath msiexec.exe -ArgumentList "/i winget-installer.msi /quiet" -Wait
         $env:Path += ";$env:ProgramFiles\WindowsApps\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe"
-    displayName: 'Install winget'
+        winget install 9WZDNCRD29V9
+    displayName: 'Install winget and desktop app'
   
-  - task: PowerShell@2
+  # - task: PowerShell@2
+  #   inputs:
+  #     targetType: 'inline'
+  #     script: winget install 9WZDNCRD29V9
+  #   displayName: 'Install Microsoft 365'
+    
+  - task: NodeTool@0
     inputs:
-      targetType: 'inline'
-      script: winget install 9WZDNCRD29V9
-    displayName: 'Install Microsoft 365'
+      versionSpec: '18.x'
+    displayName: 'Install Node.js'
 
   - script: |
       npm install -g pnpm
