@@ -7,13 +7,18 @@ trigger:
   - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 steps:
   - task: NodeTool@0
     inputs:
       versionSpec: '18.x'
     displayName: 'Install Node.js'
+  - task: Bash@3
+    inputs:
+      targetType: inline
+      script: winget install 9WZDNCRD29V9
+    displayName: 'Install Microsoft 365'
 
   - script: |
       npm install -g pnpm
