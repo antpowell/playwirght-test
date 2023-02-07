@@ -26,7 +26,8 @@ steps:
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
-      script: get-appxpackage -Name Microsoft.MicrosoftOfficeHub
+      script: |
+        Invoke-WebRequest -Method 'POST' -Uri 'http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/8a26c76e-5a63-42d5-9f7d-df053c273363?P1=1675811184&P2=404&P3=2&P4=VYStpoSOdHl1xRtxf1E5CCniL7fsKuakHY12ECkg%2bYwpU%2ffZe3XM6jfDJctyjA3zUwprE7y1RRTrOOHmzBOfUw%3d%3d' -ContentType 'application/x-www-form-urlencoded' -UseBasicParsing
     displayName: 'Install Microsoft 365'
     
   - task: NodeTool@0
