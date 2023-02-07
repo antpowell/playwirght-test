@@ -34,11 +34,11 @@ steps:
       versionSpec: '18.x'
     displayName: 'Install Node.js'
 
-  - script: |
-      npm install -g pnpm
-      pnpm install
-    displayName: 'pnpm install'
+  # - script: |
+  #     npm install -g pnpm
+  #     pnpm install
+  #   displayName: 'pnpm install'
 
   - script: |
-      pnpm vp-test
+      npm run vp-test
     displayName: 'pnpm vp-test'
