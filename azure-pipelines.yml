@@ -11,22 +11,22 @@ pool:
 
 steps:
 
-  - task: PowerShell@2
-    inputs:
-      targetType: inline
-      script: |
-        Invoke-WebRequest -Uri "https://aka.ms/winget-client" -OutFile winget-installer.msi
-        # Start-Process -FilePath msiexec.exe -ArgumentList "/i winget-installer.msi /quiet" -Wait
-        # Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile .\MicrosoftDesktopAppInstaller_8wekyb3d8bbwe.msixbundle
-        # Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
-        tree ./
-        $env:Path += ";$env:ProgramFiles\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe"
-    displayName: 'Install winget'
+  # - task: PowerShell@2
+  #   inputs:
+  #     targetType: inline
+  #     script: |
+  #       Invoke-WebRequest -Uri "https://aka.ms/winget-client" -OutFile winget-installer.msi
+  #       # Start-Process -FilePath msiexec.exe -ArgumentList "/i winget-installer.msi /quiet" -Wait
+  #       # Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile .\MicrosoftDesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+  #       # Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+  #       tree ./
+  #       $env:Path += ";$env:ProgramFiles\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe"
+  #   displayName: 'Install winget'
   
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
-      script: winget install 9WZDNCRD29V9
+      script: get-appxpackage -Name Microsoft.MicrosoftOfficeHub
     displayName: 'Install Microsoft 365'
     
   - task: NodeTool@0
