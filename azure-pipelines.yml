@@ -11,18 +11,23 @@ pool:
 
 steps:
 
+  - task: PowerShell@2
+    inputs:
+      targetType: inline
+      script: |
+        Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+        Install-Script -Name winget-install -Force
+        winget-install.ps1
+    displayName: 'Install winget'
+  
   # - task: PowerShell@2
   #   inputs:
-  #     targetType: inline
+  #     targetType: 'inline'
   #     script: |
-  #       Invoke-WebRequest -Uri "https://aka.ms/winget-client" -OutFile winget-installer.msi
-  #       # Start-Process -FilePath msiexec.exe -ArgumentList "/i winget-installer.msi /quiet" -Wait
-  #       # Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile .\MicrosoftDesktopAppInstaller_8wekyb3d8bbwe.msixbundle
-  #       # Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
-  #       tree ./
-  #       $env:Path += ";$env:ProgramFiles\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe"
-  #   displayName: 'Install winget'
-  
+  #       Invoke-WebRequest -Method 'POST' -Uri 'http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/8a26c76e-5a63-42d5-9f7d-df053c273363?P1=1675811184&P2=404&P3=2&P4=VYStpoSOdHl1xRtxf1E5CCniL7fsKuakHY12ECkg%2bYwpU%2ffZe3XM6jfDJctyjA3zUwprE7y1RRTrOOHmzBOfUw%3d%3d' -ContentType 'application/x-www-form-urlencoded' -UseBasicParsing
+  #       get-appxpackage -Name Microsoft.MicrosoftOfficeHub
+  #   displayName: 'Install Microsoft 365'
+
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
